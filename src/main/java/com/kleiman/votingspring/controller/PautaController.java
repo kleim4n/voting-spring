@@ -22,6 +22,11 @@ public class PautaController {
     public List<Pauta> getAllPautas() {
         return (List<Pauta>) pautaRepository.findAll();
     }
+    @GetMapping("/pauta/read-by-id/{id}")
+    public Pauta getPautaById(@PathVariable(value="id") Long pautaId) {
+        return pautaRepository.findById(pautaId)
+                .orElseThrow(() -> new ResourceNotFoundException("Pauta não encontrada com o id : " + pautaId));
+    }
     @PostMapping("/pauta/create")
     public Pauta createPauta(@Valid @RequestBody Pauta pauta) {
         return pautaRepository.save(pauta);
