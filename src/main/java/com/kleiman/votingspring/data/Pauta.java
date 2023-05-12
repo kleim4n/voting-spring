@@ -1,6 +1,7 @@
 package com.kleiman.votingspring.data;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -13,6 +14,7 @@ public class Pauta {
     @Getter @Setter
     private long id;
     @Column(name = "titulo")
+    @NotNull
     @Getter @Setter
     private String titulo;
     @Column(name = "descricao")
