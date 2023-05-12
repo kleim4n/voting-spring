@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @RestController
@@ -34,5 +35,12 @@ public class PautaController {
         pauta.setAberto(pautaDetails.isAberto());
         final Pauta updatedPauta = pautaRepository.save(pauta);
         return ResponseEntity.ok(updatedPauta);
+    }
+    @DeleteMapping("/pauta/delete/{id}")
+    public Map<String, Boolean> deletePauta(@PathVariable(value="id") Long pautaId){
+        Pauta pauta = pautaRepository.findById(pautaId)
+                .orElseThrow(() -> new ResourceNotFoundException("Pauta não encontrada com o id : " + pautaId));
+        pautaRepository.delete(pauta);
+        return Map.of("deletado", Boolean.TRUE);
     }
 }
