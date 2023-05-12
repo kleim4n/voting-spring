@@ -11,7 +11,7 @@ public class Pauta {
     @GeneratedValue(strategy = jakarta.persistence.GenerationType.IDENTITY)
     @Column(name = "id")
     @Getter @Setter
-    private int id;
+    private long id;
     @Column(name = "titulo")
     @Getter @Setter
     private String titulo;
